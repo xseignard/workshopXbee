@@ -9,7 +9,7 @@ URL: https://code.google.com/p/io-2012-slides
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Javascript du sol au plafond - Breizhcamp 2013</title>
+  <title>Workshop Arduino & Xbee</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
   <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
@@ -45,7 +45,7 @@ URL: https://code.google.com/p/io-2012-slides
 
 
 <slide  >
-  
+
     <hgroup>
       <h2>Au programme</h2>
       <h3></h3>
@@ -57,21 +57,21 @@ URL: https://code.google.com/p/io-2012-slides
 <li>Communiquer via Xbee: ordi &lt;-&gt; Arduino</li>
 <li>Communiquer via Xbee: Arduino &lt;-&gt; Arduino</li>
 </ul></article>
- 
+
 </slide>
 
 <slide class="segue dark nobackground" >
-  
+
     <aside class="gdbar"><img class="logo" src="images/logo.png"></aside>
     <hgroup class="auto-fadein">
       <h2>Découverte de Xbee</h2>
       <h3></h3>
     </hgroup>
-  
+
 </slide>
 
 <slide  >
-  
+
     <hgroup>
       <h2>Découverte de Xbee</h2>
       <h3></h3>
@@ -79,11 +79,11 @@ URL: https://code.google.com/p/io-2012-slides
     <article class="flexbox vcenter"><p>Xbee est un module de communication sans fil reposant sur la norme <a href="http://fr.wikipedia.org/wiki/802.15.4">802.15.4</a> et le protocole <a href="http://fr.wikipedia.org/wiki/ZigBee">ZigBee</a>.</p>
 <p>Il s'agit d'une norme pour les réseaux sans fil personnels à faible consommation (LR-WPAN : Low Rate Wireless Personal Area Network)</p>
 <p><img alt="xbee" src="./images/xbee.png" /></p></article>
- 
+
 </slide>
 
 <slide  >
-  
+
     <hgroup>
       <h2>Découverte de Xbee</h2>
       <h3></h3>
@@ -98,11 +98,11 @@ URL: https://code.google.com/p/io-2012-slides
 <li>cout relativement peu élevé (~25€)</li>
 <li>sécurité : chiffrement AES 128 bits</li>
 </ul></article>
- 
+
 </slide>
 
 <slide  >
-  
+
     <hgroup>
       <h2>Découverte de Xbee</h2>
       <h3></h3>
@@ -113,31 +113,31 @@ URL: https://code.google.com/p/io-2012-slides
 </ul>
 <p><img alt="xbee" src="./images/schemaXbee1.png" /></p>
 <footer class="source">crédit schéma: <a href="http://daniel.menesplier.free.fr/Doc/MODULE%20%20XBEE.pdf">http://daniel.menesplier.free.fr/Doc/MODULE%20%20XBEE.pdf</a><br/><br/>source: p.14 du manuel</footer></article>
- 
+
 </slide>
 
 <slide class="segue dark nobackground" >
-  
+
     <aside class="gdbar"><img class="logo" src="images/logo.png"></aside>
     <hgroup class="auto-fadein">
       <h2>Topologie des réseaux</h2>
       <h3></h3>
     </hgroup>
-  
+
 </slide>
 
 <slide  >
-  
+
     <hgroup>
       <h2>Point à point</h2>
       <h3></h3>
     </hgroup>
     <article class="flexbox vcenter"><p><img alt="pointToPoint" src="./images/pointTopoint.png" /></p></article>
- 
+
 </slide>
 
 <slide  >
-  
+
     <hgroup>
       <h2>Point à point</h2>
       <h3></h3>
@@ -157,53 +157,53 @@ URL: https://code.google.com/p/io-2012-slides
 </li>
 </ul>
 <footer class="source">source: p.15 à p.19 du manuel</footer></article>
- 
+
 </slide>
 
 <slide  >
-  
+
     <hgroup>
       <h2>En étoile</h2>
       <h3></h3>
     </hgroup>
     <article class="flexbox vcenter"><p><img alt="star" src="./images/star.png" /></p></article>
- 
+
 </slide>
 
 <slide  >
-  
+
     <hgroup>
       <h2>En étoile</h2>
       <h3></h3>
     </hgroup>
     <article ><h2>- Un coordinateur et des "end devices" s'y connectant</h2>
 <footer class="source">source: p.15 à 17 du manuel</footer></article>
- 
+
 </slide>
 
 <slide class="segue dark nobackground" >
-  
+
     <aside class="gdbar"><img class="logo" src="images/logo.png"></aside>
     <hgroup class="auto-fadein">
       <h2>Nos premières commandes AT</h2>
       <h3>Configurer Xbee</h3>
     </hgroup>
-  
+
 </slide>
 
 <slide  >
-  
+
     <hgroup>
       <h2>Nos premières commandes AT</h2>
       <h3></h3>
     </hgroup>
     <article ><p>Démarrer X-CTU, choisir le port série du Xbee puis cliquer sur l'onglet Terminal</p>
 <p><img alt="xctu" src="./images/xctu.png" /> <img alt="xctu2" src="./images/xctu2.png" /></p></article>
- 
+
 </slide>
 
 <slide  >
-  
+
     <hgroup>
       <h2>Nos premières commandes AT</h2>
       <h3></h3>
@@ -216,31 +216,31 @@ URL: https://code.google.com/p/io-2012-slides
 <li><code>ATRE</code> : restaure les paramêtres par défaut d'usine du XBee</li>
 <li><code>ATCN</code> : quitte le mode configuration</li>
 </ul></article>
- 
+
 </slide>
 
 <slide class="segue dark nobackground" >
-  
+
     <aside class="gdbar"><img class="logo" src="images/logo.png"></aside>
     <hgroup class="auto-fadein">
       <h2>Communiquer via Xbee</h2>
       <h3>ordi <-> Arduino</h3>
     </hgroup>
-  
+
 </slide>
 
 <slide  >
-  
+
     <hgroup>
       <h2>Montage Xbee <-> Arduino</h2>
       <h3></h3>
     </hgroup>
     <article ><p><img alt="arduinoXbee" src="./images/arduinoXbee.png" /></p></article>
- 
+
 </slide>
 
 <slide  >
-  
+
     <hgroup>
       <h2>Configuration du Xbee "ordi"</h2>
       <h3></h3>
@@ -251,11 +251,11 @@ URL: https://code.google.com/p/io-2012-slides
 <li><code>ATMY</code> à 0</li>
 <li>Sauvegarder et quitter le mode commande</li>
 </ul></article>
- 
+
 </slide>
 
 <slide  >
-  
+
     <hgroup>
       <h2>Configuration du Xbee "arduino"</h2>
       <h3></h3>
@@ -266,11 +266,11 @@ URL: https://code.google.com/p/io-2012-slides
 <li><code>ATMY</code> à 1</li>
 <li>Sauvegarder et quitter le mode commande</li>
 </ul></article>
- 
+
 </slide>
 
 <slide  >
-  
+
     <hgroup>
       <h2>Programmation de l'arduino</h2>
       <h3></h3>
@@ -283,27 +283,27 @@ URL: https://code.google.com/p/io-2012-slides
 <p>Lorsque le Xbee est branché sur l'arduino cela condamne l'upload de programme. Débrancher les cables Rx et Tx de l'arduino avant l'upload d'un nouveau programme.</p>
 <p>Taper ces 1 et 0 dans X-CTU, connecté au Xbee "ordi" et regarder la led s'allumer et s'éteindre.</p>
 <p>Modifier le programme à votre guise.</p></article>
- 
+
 </slide>
 
 <slide class="segue dark nobackground" >
-  
+
     <aside class="gdbar"><img class="logo" src="images/logo.png"></aside>
     <hgroup class="auto-fadein">
       <h2>Communiquer via Xbee</h2>
       <h3>Arduino <-> Arduino</h3>
     </hgroup>
-  
+
 </slide>
 
 <slide  >
-  
+
     <hgroup>
       <h2>Pouet</h2>
       <h3></h3>
     </hgroup>
     <article ></article>
- 
+
 </slide>
 
 
