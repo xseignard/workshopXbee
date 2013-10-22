@@ -1,0 +1,348 @@
+<!--
+Google IO 2012 HTML5 Slide Template
+
+Authors: Eric Bidelman <ebidel@gmail.com>
+         Luke Mahe <lukem@google.com>
+
+URL: https://code.google.com/p/io-2012-slides
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Javascript du sol au plafond - Breizhcamp 2013</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <!--This one seems to work all the time, but really small on ipad-->
+  <!--<meta name="viewport" content="initial-scale=0.4">-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" media="all" href="theme/css/default.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="theme/css/phone.css">
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+  <script data-main="js/slides" src="js/require-1.0.8.min.js"></script>
+  <script src="http://localhost:35729/livereload.js"></script>
+</head>
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+<!-- <slide class="logoslide nobackground">
+  <article class="flexbox vcenter">
+    <span><img src="images/google_developers_logo.png"></span>
+  </article>
+</slide>
+ -->
+<slide class="title-slide segue nobackground">
+  <aside class="gdbar"><img class="logo" src="images/logo.png"></aside>
+  <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+  <hgroup class="auto-fadein">
+    <h1 data-config-title><!-- populated from slide_config.json --></h1>
+    <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
+    <p data-config-presenter><!-- populated from slide_config.json --></p>
+  </hgroup>
+</slide>
+
+
+<slide  >
+  
+    <hgroup>
+      <h2>Au programme</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul>
+<li>Découverte de Xbee</li>
+<li>Topologie des réseaux</li>
+<li>Configurer son Xbee</li>
+<li>Communiquer via Xbee: ordi &lt;-&gt; Arduino</li>
+<li>Communiquer via Xbee: Arduino &lt;-&gt; Arduino</li>
+</ul></article>
+ 
+</slide>
+
+<slide class="segue dark nobackground" >
+  
+    <aside class="gdbar"><img class="logo" src="images/logo.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Découverte de Xbee</h2>
+      <h3></h3>
+    </hgroup>
+  
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Découverte de Xbee</h2>
+      <h3></h3>
+    </hgroup>
+    <article class="flexbox vcenter"><p>Xbee est un module de communication sans fil reposant sur la norme <a href="http://fr.wikipedia.org/wiki/802.15.4">802.15.4</a> et le protocole <a href="http://fr.wikipedia.org/wiki/ZigBee">ZigBee</a>.</p>
+<p>Il s'agit d'une norme pour les réseaux sans fil personnels à faible consommation (LR-WPAN : Low Rate Wireless Personal Area Network)</p>
+<p><img alt="xbee" src="./images/xbee.png" /></p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Découverte de Xbee</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><p>Les principales <a href="http://www.digi.com/products/wireless-wired-embedded-solutions/zigbee-rf-modules/point-multipoint-rfmodules/xbee-series1-module#specs">caractéristiques</a> du XBee 1:</p>
+<ul>
+<li>portée : ~30m max en milieu urbain et intérieur, ~90m en extérieur dégagé</li>
+<li>faible débit : 250kbps</li>
+<li>faible consommation : ~50mA à 3.3V</li>
+<li>communication série (<a href="http://fr.wikipedia.org/wiki/UART">UART</a>)</li>
+<li>mise en place de réseaux point à point ou en étoile</li>
+<li>cout relativement peu élevé (~25€)</li>
+<li>sécurité : chiffrement AES 128 bits</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Découverte de Xbee</h2>
+      <h3></h3>
+    </hgroup>
+    <article class="flexbox vcenter"><ul>
+<li>communication directe depuis entrées/sorties analogiques et digitales</li>
+<li>I/O "line passing" : un DIO (configuré en input) sur un Xbee active un DIO (configuré en output) sur un autre Xbee</li>
+</ul>
+<p><img alt="xbee" src="./images/schemaXbee1.png" /></p>
+<footer class="source">crédit schéma: <a href="http://daniel.menesplier.free.fr/Doc/MODULE%20%20XBEE.pdf">http://daniel.menesplier.free.fr/Doc/MODULE%20%20XBEE.pdf</a><br/><br/>source: p.14 du manuel</footer></article>
+ 
+</slide>
+
+<slide class="segue dark nobackground" >
+  
+    <aside class="gdbar"><img class="logo" src="images/logo.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Topologie des réseaux</h2>
+      <h3></h3>
+    </hgroup>
+  
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Point à point</h2>
+      <h3></h3>
+    </hgroup>
+    <article class="flexbox vcenter"><p><img alt="pointToPoint" src="./images/pointTopoint.png" /></p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Point à point</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul>
+<li>Mode par défaut</li>
+<li>Les deux Xbee doivent être sur le même réseau (PAN ID) et le même canal RF</li>
+<li>Envoi unicast: envoi sur une adresse spécifique du réseau.<ul>
+<li>le receveur envoie un message de confirmation de réception (ACK) à l'emmetteur</li>
+<li>l'emmetteur renvoie le message jusqu'à 3 fois ou jusqu'à réception de l'ACK</li>
+</ul>
+</li>
+<li>Envoi broadcast: envoi sur toutes les adresses du réseau.<ul>
+<li>pas d'ACK des receveurs</li>
+<li>se fait via l'adresse de broadcast</li>
+</ul>
+</li>
+</ul>
+<footer class="source">source: p.15 à p.19 du manuel</footer></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>En étoile</h2>
+      <h3></h3>
+    </hgroup>
+    <article class="flexbox vcenter"><p><img alt="star" src="./images/star.png" /></p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>En étoile</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><h2>- Un coordinateur et des "end devices" s'y connectant</h2>
+<footer class="source">source: p.15 à 17 du manuel</footer></article>
+ 
+</slide>
+
+<slide class="segue dark nobackground" >
+  
+    <aside class="gdbar"><img class="logo" src="images/logo.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Nos premières commandes AT</h2>
+      <h3>Configurer Xbee</h3>
+    </hgroup>
+  
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Nos premières commandes AT</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><p>Démarrer X-CTU, choisir le port série du Xbee puis cliquer sur l'onglet Terminal</p>
+<p><img alt="xctu" src="./images/xctu.png" /> <img alt="xctu2" src="./images/xctu2.png" /></p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Nos premières commandes AT</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul>
+<li><code>+++</code> : passer en mode commande AT, attendre le OK de retour</li>
+<li><code>ATID</code> (+ param de 0000 à FFFF) : lit ou modifie l'ID du réseau Xbee (PAN ID)</li>
+<li><code>ATMY</code> (+ param de 0000 à FFFF) : lit ou modifie l'adresse du Xbee</li>
+<li><code>ATWR</code> : sauve les paramètres dans la mémoire du Xbee, attendre le OK de retour</li>
+<li><code>ATRE</code> : restaure les paramêtres par défaut d'usine du XBee</li>
+<li><code>ATCN</code> : quitte le mode configuration</li>
+</ul></article>
+ 
+</slide>
+
+<slide class="segue dark nobackground" >
+  
+    <aside class="gdbar"><img class="logo" src="images/logo.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Communiquer via Xbee</h2>
+      <h3>ordi <-> Arduino</h3>
+    </hgroup>
+  
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Montage Xbee <-> Arduino</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><p><img alt="arduinoXbee" src="./images/arduinoXbee.png" /></p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Configuration du Xbee "ordi"</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul>
+<li>Partir d'une configuration d'usine</li>
+<li><code>ATID</code> à 1</li>
+<li><code>ATMY</code> à 0</li>
+<li>Sauvegarder et quitter le mode commande</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Configuration du Xbee "arduino"</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul>
+<li>Partir d'une configuration d'usine</li>
+<li><code>ATID</code> à 1</li>
+<li><code>ATMY</code> à 1</li>
+<li>Sauvegarder et quitter le mode commande</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Programmation de l'arduino</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><p>Ecrire un programme qui :</p>
+<ul>
+<li>allume la led 13 lorsque <code>1</code> est reçu</li>
+<li>éteind la led 13 lorsque <code>0</code> est reçu</li>
+</ul>
+<p>Lorsque le Xbee est branché sur l'arduino cela condamne l'upload de programme. Débrancher les cables Rx et Tx de l'arduino avant l'upload d'un nouveau programme.</p>
+<p>Taper ces 1 et 0 dans X-CTU, connecté au Xbee "ordi" et regarder la led s'allumer et s'éteindre.</p>
+<p>Modifier le programme à votre guise.</p></article>
+ 
+</slide>
+
+<slide class="segue dark nobackground" >
+  
+    <aside class="gdbar"><img class="logo" src="images/logo.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Communiquer via Xbee</h2>
+      <h3>Arduino <-> Arduino</h3>
+    </hgroup>
+  
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Pouet</h2>
+      <h3></h3>
+    </hgroup>
+    <article ></article>
+ 
+</slide>
+
+
+<slide class="thank-you-slide segue nobackground">
+  <aside class="gdbar right"><img src="images/logo.png"></aside>
+  <article class="flexbox vleft auto-fadein">
+    <h2>&lt;Thank You!/&gt;</h2>
+    <p>Any questions?</p>
+  </article>
+  <p class="auto-fadein" data-config-contact>
+    <!-- populated from slide_config.json -->
+  </p>
+</slide>
+
+<!-- <slide class="logoslide dark nobackground">
+  <article class="flexbox vcenter">
+    <span><img src="images/google_developers_logo_white.png"></span>
+  </article>
+</slide> -->
+
+<slide class="backdrop"></slide>
+
+</slides>
+
+<script>
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<!--[if IE]>
+  <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+  <script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+</html>
