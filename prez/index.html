@@ -9,7 +9,7 @@ URL: https://code.google.com/p/io-2012-slides
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Workshop Arduino & Xbee</title>
+  <title>Javascript du sol au plafond - Breizhcamp 2013</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
   <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
@@ -45,47 +45,50 @@ URL: https://code.google.com/p/io-2012-slides
 
 
 <slide  >
-
+  
     <hgroup>
       <h2>Au programme</h2>
       <h3></h3>
     </hgroup>
     <article ><ul>
-<li>Découverte de Xbee</li>
-<li>Topologie des réseaux</li>
-<li>Configurer son Xbee</li>
-<li>Communiquer via Xbee: ordi &lt;-&gt; Arduino</li>
-<li>Communiquer via Xbee: Arduino &lt;-&gt; Arduino</li>
+<li>Découverte de XBee</li>
+<li>Modes de communication</li>
+<li>Configurer son XBee</li>
+<li>Communiquer via XBee: ordi &lt;-&gt; Arduino</li>
+<li>Communiquer via XBee: Arduino &lt;-&gt; Arduino</li>
+<li>Communiquer via XBee: Arduino vers plusieurs Arduino</li>
+<li>Communiquer via XBee: Arduino &lt;-&gt; Web</li>
+<li>Travaux de groupe</li>
 </ul></article>
-
+ 
 </slide>
 
 <slide class="segue dark nobackground" >
-
+  
     <aside class="gdbar"><img class="logo" src="images/logo.png"></aside>
     <hgroup class="auto-fadein">
-      <h2>Découverte de Xbee</h2>
+      <h2>Découverte de XBee</h2>
       <h3></h3>
     </hgroup>
-
+  
 </slide>
 
 <slide  >
-
+  
     <hgroup>
-      <h2>Découverte de Xbee</h2>
+      <h2>Découverte de XBee</h2>
       <h3></h3>
     </hgroup>
-    <article class="flexbox vcenter"><p>Xbee est un module de communication sans fil reposant sur la norme <a href="http://fr.wikipedia.org/wiki/802.15.4">802.15.4</a> et le protocole <a href="http://fr.wikipedia.org/wiki/ZigBee">ZigBee</a>.</p>
+    <article class="flexbox vcenter"><p>XBee est un module de communication sans fil reposant sur la norme <a href="http://fr.wikipedia.org/wiki/802.15.4">802.15.4</a> et le protocole <a href="http://fr.wikipedia.org/wiki/ZigBee">ZigBee</a>.</p>
 <p>Il s'agit d'une norme pour les réseaux sans fil personnels à faible consommation (LR-WPAN : Low Rate Wireless Personal Area Network)</p>
 <p><img alt="xbee" src="./images/xbee.png" /></p></article>
-
+ 
 </slide>
 
 <slide  >
-
+  
     <hgroup>
-      <h2>Découverte de Xbee</h2>
+      <h2>Découverte de XBee</h2>
       <h3></h3>
     </hgroup>
     <article ><p>Les principales <a href="http://www.digi.com/products/wireless-wired-embedded-solutions/zigbee-rf-modules/point-multipoint-rfmodules/xbee-series1-module#specs">caractéristiques</a> du XBee 1:</p>
@@ -98,179 +101,182 @@ URL: https://code.google.com/p/io-2012-slides
 <li>cout relativement peu élevé (~25€)</li>
 <li>sécurité : chiffrement AES 128 bits</li>
 </ul></article>
-
+ 
 </slide>
 
 <slide  >
-
+  
     <hgroup>
-      <h2>Découverte de Xbee</h2>
+      <h2>Découverte de XBee</h2>
       <h3></h3>
     </hgroup>
     <article class="flexbox vcenter"><ul>
 <li>communication directe depuis entrées/sorties analogiques et digitales</li>
-<li>I/O "line passing" : un DIO (configuré en input) sur un Xbee active un DIO (configuré en output) sur un autre Xbee</li>
+<li>I/O "line passing" : un DIO (configuré en input) sur un XBee active un DIO (configuré en output) sur un autre XBee</li>
 </ul>
 <p><img alt="xbee" src="./images/schemaXbee1.png" /></p>
 <footer class="source">crédit schéma: <a href="http://daniel.menesplier.free.fr/Doc/MODULE%20%20XBEE.pdf">http://daniel.menesplier.free.fr/Doc/MODULE%20%20XBEE.pdf</a><br/><br/>source: p.14 du manuel</footer></article>
-
+ 
 </slide>
 
 <slide class="segue dark nobackground" >
-
+  
     <aside class="gdbar"><img class="logo" src="images/logo.png"></aside>
     <hgroup class="auto-fadein">
-      <h2>Topologie des réseaux</h2>
+      <h2>Modes de communication</h2>
       <h3></h3>
     </hgroup>
-
+  
 </slide>
 
 <slide  >
-
+  
     <hgroup>
       <h2>Point à point</h2>
       <h3></h3>
     </hgroup>
     <article class="flexbox vcenter"><p><img alt="pointToPoint" src="./images/pointTopoint.png" /></p></article>
-
+ 
 </slide>
 
 <slide  >
-
+  
     <hgroup>
       <h2>Point à point</h2>
       <h3></h3>
     </hgroup>
     <article ><ul>
 <li>Mode par défaut</li>
-<li>Les deux Xbee doivent être sur le même réseau (PAN ID) et le même canal RF</li>
-<li>Envoi unicast: envoi sur une adresse spécifique du réseau.<ul>
+<li>Les deux XBee doivent être sur le même réseau (PAN ID) et le même canal RF</li>
+<li>Envoi sur une adresse spécifique du réseau.<ul>
 <li>le receveur envoie un message de confirmation de réception (ACK) à l'emmetteur</li>
 <li>l'emmetteur renvoie le message jusqu'à 3 fois ou jusqu'à réception de l'ACK</li>
 </ul>
 </li>
-<li>Envoi broadcast: envoi sur toutes les adresses du réseau.<ul>
-<li>pas d'ACK des receveurs</li>
-<li>se fait via l'adresse de broadcast</li>
-</ul>
-</li>
 </ul>
 <footer class="source">source: p.15 à p.19 du manuel</footer></article>
-
+ 
 </slide>
 
 <slide  >
-
+  
     <hgroup>
-      <h2>En étoile</h2>
+      <h2>API</h2>
       <h3></h3>
     </hgroup>
     <article class="flexbox vcenter"><p><img alt="star" src="./images/star.png" /></p></article>
-
+ 
 </slide>
 
 <slide  >
-
+  
     <hgroup>
-      <h2>En étoile</h2>
+      <h2>API</h2>
       <h3></h3>
     </hgroup>
-    <article ><h2>- Un coordinateur et des "end devices" s'y connectant</h2>
-<footer class="source">source: p.15 à 17 du manuel</footer></article>
-
+    <article ><ul>
+<li>Les deux XBee doivent être sur le même réseau (PAN ID) et le même canal RF</li>
+<li>L'adresse du destinataire se trouve dans le message lui même</li>
+<li>Possibilité de communiquer avec plusieurs autres XBees</li>
+<li>Possibilité simple d'envoyer un message à plusieurs XBees en même temps (broadcast)</li>
+</ul>
+<footer class="source">source: <a href="http://code.google.com/p/xbee-api/wiki/WhyApiMode">http://code.google.com/p/xbee-api/wiki/WhyApiMode</a></footer></article>
+ 
 </slide>
 
 <slide class="segue dark nobackground" >
-
+  
     <aside class="gdbar"><img class="logo" src="images/logo.png"></aside>
     <hgroup class="auto-fadein">
       <h2>Nos premières commandes AT</h2>
-      <h3>Configurer Xbee</h3>
+      <h3>Configurer XBee</h3>
     </hgroup>
-
+  
 </slide>
 
 <slide  >
-
+  
     <hgroup>
       <h2>Nos premières commandes AT</h2>
       <h3></h3>
     </hgroup>
-    <article ><p>Démarrer X-CTU, choisir le port série du Xbee puis cliquer sur l'onglet Terminal</p>
+    <article ><p>Démarrer X-CTU, choisir le port série du XBee puis cliquer sur l'onglet Terminal</p>
 <p><img alt="xctu" src="./images/xctu.png" /> <img alt="xctu2" src="./images/xctu2.png" /></p></article>
-
+ 
 </slide>
 
 <slide  >
-
+  
     <hgroup>
       <h2>Nos premières commandes AT</h2>
       <h3></h3>
     </hgroup>
     <article ><ul>
 <li><code>+++</code> : passer en mode commande AT, attendre le OK de retour</li>
-<li><code>ATID</code> (+ param de 0000 à FFFF) : lit ou modifie l'ID du réseau Xbee (PAN ID)</li>
-<li><code>ATMY</code> (+ param de 0000 à FFFF) : lit ou modifie l'adresse du Xbee</li>
-<li><code>ATWR</code> : sauve les paramètres dans la mémoire du Xbee, attendre le OK de retour</li>
+<li><code>ATID</code> (+ param de 0000 à FFFF) : lit ou modifie l'ID du réseau XBee (PAN ID)</li>
+<li><code>ATMY</code> (+ param de 0000 à FFFF) : lit ou modifie l'adresse du XBee</li>
+<li><code>ATDL</code> (+ param de 0000 à FFFF) : lit ou modifie l'adresse du XBee de destination</li>
+<li><code>ATWR</code> : sauve les paramètres dans la mémoire du XBee, attendre le OK de retour</li>
 <li><code>ATRE</code> : restaure les paramêtres par défaut d'usine du XBee</li>
 <li><code>ATCN</code> : quitte le mode configuration</li>
 </ul></article>
-
+ 
 </slide>
 
 <slide class="segue dark nobackground" >
-
+  
     <aside class="gdbar"><img class="logo" src="images/logo.png"></aside>
     <hgroup class="auto-fadein">
-      <h2>Communiquer via Xbee</h2>
+      <h2>Communiquer via XBee</h2>
       <h3>ordi <-> Arduino</h3>
     </hgroup>
-
+  
 </slide>
 
 <slide  >
-
+  
     <hgroup>
-      <h2>Montage Xbee <-> Arduino</h2>
+      <h2>Montage XBee <-> Arduino</h2>
       <h3></h3>
     </hgroup>
-    <article ><p><img alt="arduinoXbee" src="./images/arduinoXbee.png" /></p></article>
-
+    <article ><p><img alt="arduinoXBee" src="./images/arduinoXbee.png" /></p></article>
+ 
 </slide>
 
 <slide  >
-
+  
     <hgroup>
-      <h2>Configuration du Xbee "ordi"</h2>
-      <h3></h3>
-    </hgroup>
-    <article ><ul>
-<li>Partir d'une configuration d'usine</li>
-<li><code>ATID</code> à 1</li>
-<li><code>ATMY</code> à 0</li>
-<li>Sauvegarder et quitter le mode commande</li>
-</ul></article>
-
-</slide>
-
-<slide  >
-
-    <hgroup>
-      <h2>Configuration du Xbee "arduino"</h2>
+      <h2>Configuration du XBee "ordi"</h2>
       <h3></h3>
     </hgroup>
     <article ><ul>
 <li>Partir d'une configuration d'usine</li>
 <li><code>ATID</code> à 1</li>
 <li><code>ATMY</code> à 1</li>
+<li><code>ATDL</code> à 2</li>
 <li>Sauvegarder et quitter le mode commande</li>
 </ul></article>
-
+ 
 </slide>
 
 <slide  >
+  
+    <hgroup>
+      <h2>Configuration du XBee "arduino"</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul>
+<li>Partir d'une configuration d'usine</li>
+<li><code>ATID</code> à 1</li>
+<li><code>ATMY</code> à 2</li>
+<li><code>ATDL</code> à 1</li>
+<li>Sauvegarder et quitter le mode commande</li>
+</ul></article>
+ 
+</slide>
 
+<slide  >
+  
     <hgroup>
       <h2>Programmation de l'arduino</h2>
       <h3></h3>
@@ -280,35 +286,286 @@ URL: https://code.google.com/p/io-2012-slides
 <li>allume la led 13 lorsque <code>1</code> est reçu</li>
 <li>éteind la led 13 lorsque <code>0</code> est reçu</li>
 </ul>
-<p>Lorsque le Xbee est branché sur l'arduino cela condamne l'upload de programme. Débrancher les cables Rx et Tx de l'arduino avant l'upload d'un nouveau programme.</p>
-<p>Taper ces 1 et 0 dans X-CTU, connecté au Xbee "ordi" et regarder la led s'allumer et s'éteindre.</p>
+<p>Lorsque le XBee est branché sur l'arduino cela condamne l'upload de programme. Débrancher les cables Rx et Tx de l'arduino avant l'upload d'un nouveau programme.</p>
+<p>Taper ces 1 et 0 dans X-CTU, connecté au XBee "ordi" et regarder la led s'allumer et s'éteindre.</p>
 <p>Modifier le programme à votre guise.</p></article>
-
+ 
 </slide>
 
 <slide class="segue dark nobackground" >
-
+  
     <aside class="gdbar"><img class="logo" src="images/logo.png"></aside>
     <hgroup class="auto-fadein">
-      <h2>Communiquer via Xbee</h2>
+      <h2>Communiquer via XBee</h2>
       <h3>Arduino <-> Arduino</h3>
     </hgroup>
-
+  
 </slide>
 
 <slide  >
-
+  
     <hgroup>
-      <h2>Pouet</h2>
+      <h2>Montage</h2>
       <h3></h3>
     </hgroup>
-    <article ></article>
+    <article ><p>Ajouter un bouton sur la PIN 3, pour les deux Arduino.</p>
+<p><img alt="arduinoArduino" src="./images/arduinoArduino.png" /></p></article>
+ 
+</slide>
 
+<slide  >
+  
+    <hgroup>
+      <h2>Configuration</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><p>Les deux XBees sont déjà configurés pour communiquer entre eux grace à l'exercice précédent.</p>
+<p>Si ce n'est pas le cas reprendre la configuration précédente.</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Programmation</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><p>Ecrire un programme qui :</p>
+<ul>
+<li>envoie <code>1</code> lorsque le boutton est pressé</li>
+<li>allume la led 13 lorsque <code>1</code> est reçu</li>
+</ul>
+<p>Uploader le même programme sur les deux Arduinos. (N'oubliez pas de débrancher les XBee!!)</p></article>
+ 
+</slide>
+
+<slide class="segue dark nobackground" >
+  
+    <aside class="gdbar"><img class="logo" src="images/logo.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Communiquer via XBee</h2>
+      <h3>Plus de deux XBee</h3>
+    </hgroup>
+  
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Plus de deux XBee</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><p>La communication "point à point" comme présentée précedemment ne permet pas de choisir le destinataire des messages envoyés par le XBee.</p>
+<p>Ce type de communication permet simplement de relayer des messages "série" d'un XBee à un autre.</p>
+<p>Pour palier à celà, il existe le mode "API" qui permet de spécifier le destinataire d'un message XBee, à l'image d'un paquet "internet" destiné à une adresse IP.</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Utiliser une librairie Arduino</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><p>Le format des messages XBee en mode "API" sont spécifiques et complexes. Au lieu de les "créer" à la main, nous pouvons utiliser une librairie qui nous simplifie le travail.</p>
+<p>Pour les curieux, vous pouvez toujours aller voir à quoi ressemble une trame XBee <a href="http://rubenlaguna.com/wp/2009/03/12/example-of-xbee-api-frames/">ici</a></p>
+<p>Nous allons utiliser la librairie <a href="http://code.google.com/p/xbee-arduino/">xbee-arduino</a>.</p>
+<ul>
+<li>Téléchargez la : <a href="http://xbee-arduino.googlecode.com/files/xbee-arduino-0.4-softwareserial-beta.zip">http://xbee-arduino.googlecode.com/files/xbee-arduino-0.4-softwareserial-beta.zip</a></li>
+<li>Et placez le dossier XBee contenu dans l'archive dans le dossier <code>libraries</code> de votre sketchbook Arduino.</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Configurer un XBee en mode API</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><p>Dans X-CTU executez les commandes suivantes :</p>
+<ul>
+<li><code>+++</code></li>
+<li>Restaurer les paramètres d'origine: <code>ATRE</code></li>
+<li>Activer le mode API : <code>ATAP2</code></li>
+<li>Adresse du XBee, chacun une différente : <code>ATMY1</code>, <code>ATMY2</code>, etc.</li>
+<li>Adresse du réseau : <code>ATID1111</code></li>
+<li>Canal de radio fréquence : <code>ATCH0C</code> (c'est un zéro!)</li>
+<li>Sauver la conf : <code>ATWR</code></li>
+<li>Redémarrer le XBee : <code>ATFR</code></li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Programmer l'Arduino</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><p>A partir du montage et code précédent (un bouton et une led).</p>
+<p>Configurer la librairie Xbee:
+<pre class="prettyprint" data-lang="arduino">
+&#35;include &lt;XBee.h&gt;
+XBee xbee = XBee();
+Rx16Response rx16 = Rx16Response();
+Tx16Request tx;
+uint8_t message[] = {0};
+uint16_t adress = 0x0001;
+</pre></p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Programmer l'Arduino</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><p>Ecouter les messages XBee en lieu et place du port série
+<pre class="prettyprint" data-lang="arduino">
+xbee.readPacket();
+  if (xbee.getResponse().isAvailable()) {
+    if (xbee.getResponse().getApiId() == RX_16_RESPONSE) {
+      xbee.getResponse().getRx16Response(rx16);
+      char data = rx16.getData(0);
+</pre></p>
+<p>Envoyer un message XBee API en lieu et place d'un message série
+<pre class="prettyprint" data-lang="arduino">
+tx = Tx16Request(adress, message, sizeof(message));
+xbee.send(tx);
+</pre></p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Programmer l'Arduino</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><p>Choisissez une adresse parmis celles disponible sur le réseau pour faire clignoter la led d'un autre XBee.</p></article>
+ 
+</slide>
+
+<slide class="segue dark nobackground" >
+  
+    <aside class="gdbar"><img class="logo" src="images/logo.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Communiquer via XBee</h2>
+      <h3>Arduino <-> Web</h3>
+    </hgroup>
+  
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Principe général</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><p>L'idée est de recevoir les données du Xbee "ordi" dans son programme et de les transférer sur le web. Et inversement.</p>
+<p>Il faut donc :</p>
+<ul>
+<li>écouter/communiquer sur le port "série" (USB) sur lequel est connecté le XBee</li>
+<li>traiter les infos reçues</li>
+<li>les "servir" dans une page web, ce qui implique la création d'un serveur</li>
+</ul>
+<p>Pleins de langages permettent de faire cela, nous utiliserons Node.js car :</p>
+<ul>
+<li>syntaxe assez facile à prendre en main</li>
+<li>plein de librairies utiles pour ce cas</li>
+<li>gestion évenementielle très adaptée (boucle infinie vs. évènements)</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Ecouter le port série</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><p>Créer un dossier et s'y placer en ligne de commande, puis installer la librairie d'écoute du port série.
+<pre class="prettyprint" data-lang="cmd">
+cd /mon/dossier
+npm install serialport
+</pre></p>
+<p>Il faut que les XBee soient configurés mode "point à point".
+Repartir du programme Arduino <code>arduinoArduino</code> et créer un petit programme : <code>test.js</code></p>
+<pre class="prettyprint" data-lang="node.js">
+var SerialPort = require('serialport').SerialPort,
+    xbee = new SerialPort('YOURPORT'); // spécifier votre port
+
+xbee.on('data', function(data) {
+    console.log(data); // un buffer? décodez le avec data.toString()
+});
+</pre></article>
+ 
+</slide>
+
+<slide class="segue dark nobackground" >
+  
+    <aside class="gdbar"><img class="logo" src="images/logo.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Travaux de groupe</h2>
+      <h3>champ libre, ou presque!</h3>
+    </hgroup>
+  
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Servir les données en temps réel</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><p>HTML5 arrive à notre secours! Grace aux WebSockets un serveur peut communiquer en temps réel sans que l'utilisateur doive recharger la page web!</p>
+<p>Au programme:</p>
+<ul>
+<li>Arduino et XBee en mode point à point</li>
+<li>Communication serveur/client</li>
+<li>Node.js, JavaScript, HTML5 et WebSockets</li>
+</ul>
+<p>Voir l'exemple arduinoWeb</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Controler le monde réel depuis le web</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><p>Depuis la page web nous allons requêter le serveur pour que celui-ci transmette la commande voulue au XBee, afin d'allumer lampes et autres dispositifs électriques.</p>
+<p>Au programme:</p>
+<ul>
+<li>Arduino et XBee en mode point à point</li>
+<li>Communication serveur/client</li>
+<li>Node.js, JavaScript, HTML5 et WebSockets</li>
+</ul>
+<p>Voir l'exemple web</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Créer une console de commande</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><p>Depuis un Arduino, nous allons commander un ensemble de lampes et autres dispositifs électriques</p>
+<p>Au programme:</p>
+<ul>
+<li>Arduino et XBee en mode API</li>
+</ul>
+<p>Voir les exemples xbeeApi</p></article>
+ 
 </slide>
 
 
 <slide class="thank-you-slide segue nobackground">
-  <aside class="gdbar right"><img src="images/logo.png"></aside>
+  <aside class="gdbar right"><img class="logo" src="images/logo.png"></aside>
   <article class="flexbox vleft auto-fadein">
     <h2>&lt;Thank You!/&gt;</h2>
     <p>Any questions?</p>

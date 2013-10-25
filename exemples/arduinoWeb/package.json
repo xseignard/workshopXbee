@@ -1,0 +1,11 @@
+{
+  "name": "arduinoWeb",
+  "version": "0.0.1",
+  "description": "Arduino -> Web",
+  "license": "MIT",
+  "dependencies": {
+    "serialport": "~1.2.2",
+    "socket.io": "~0.9.16",
+    "express": "~3.4.3"
+  }
+}

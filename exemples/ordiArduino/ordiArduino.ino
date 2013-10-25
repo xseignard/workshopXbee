@@ -6,6 +6,7 @@ void setup() {
 }
 
 void loop() {
+  // data received
   if (Serial.available() > 0) {
     char i = Serial.read();
     Serial.print(" arduino received => ");
